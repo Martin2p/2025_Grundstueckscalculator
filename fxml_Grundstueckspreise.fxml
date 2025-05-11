@@ -79,7 +79,7 @@
             <Label fx:id="endpreis" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="320.0" layoutY="221.0" maxHeight="250.0" maxWidth="250.0" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-color: darkgrey; -fx-border-radius: 3px; -fx-padding: 5;" textAlignment="RIGHT" wrapText="true" />
             <Label layoutX="25.0" layoutY="250.0" prefHeight="17.0" prefWidth="177.0" text="Provision: 5 %" />
             <Label layoutX="25.0" layoutY="275.0" prefHeight="17.0" prefWidth="177.0" text="Mehrwertsteuer: 19 %" />
-            <Label layoutX="25.0" layoutY="157.0" prefHeight="30.0" prefWidth="177.0" text="Wertevaulierung">
+            <Label layoutX="25.0" layoutY="157.0" prefHeight="30.0" prefWidth="177.0" text="Wertberechnung">
                <font>
                   <Font size="15.0" />
                </font>
