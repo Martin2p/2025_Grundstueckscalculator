@@ -35,7 +35,7 @@ public class FXMLController {
 		
 		//Provision und Endpreis werden auf 2 Nachkommastellen gekürzt angezeigt
 		inklprovision.setText(String.format("%.2f",provisionsPreis()) + " €");
-		endpreis.setText(String.format("%.2f", bruttoPreis());
+		endpreis.setText(String.format("%.2f", bruttoPreis()));
 	}
 
 	//die Methode zur Berechnung der Fläche
