@@ -10,8 +10,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class FXMLController {
-	//Deklarationen
 	
+	//Deklarationen
 		@FXML private Stage meineStage;
 		@FXML private TextField lengthIn;
 		@FXML private TextField widthIn;
