@@ -31,11 +31,11 @@ public class FXMLController {
 		
 		//Ausgabe der Berechnungen unter Verwendung der Methoden
 		grundflaeche.setText(flaecheBerechnen() + " m²");
-		nettopreis.setText(nettoPreis() + " €");
 		
-		//Provision und Endpreis werden auf 2 Nachkommastellen gekürzt angezeigt
-		inklprovision.setText(String.format("%.2f",provisionsPreis()) + " €");
-		endpreis.setText(String.format("%.2f", bruttoPreis()));
+		//Auf 2 Nachkommastellen gekürzt anzeigen
+		nettopreis.setText(String.format("%.2f", nettoPreis()) + " €");
+		inklprovision.setText(String.format("%.2f", provisionsPreis()) + " €");
+		endpreis.setText(String.format("%.2f", bruttoPreis()) + " €");
 	}
 
 	//die Methode zur Berechnung der Fläche
