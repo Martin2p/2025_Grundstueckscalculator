@@ -16,37 +16,37 @@ public class FXMLController {
 		@FXML private TextField lengthIn;
 		@FXML private TextField widthIn;
 		@FXML private TextField qmPriceIn;
-		@FXML private Label ausgabe;
+		@FXML private Label grundflaeche;
+		@FXML private Label nettopreis;
+		@FXML private Label inklprovision;
+		@FXML private Label endpreis;
 	
-		
 	//die Methode setzt die Bühne auf den übergebenen Wert
 	public void setMeineStage(Stage meineStage) {
 		this.meineStage = meineStage;
 	}
 	
-	
 	//die allgemeine Berechnen-Methode
 	@FXML protected void berechnen(ActionEvent event) {
 		
 		//Ausgabe der Berechnungen unter Verwendung der Methoden
-		String flaeche = ("Grundstücksfläche: " + flaecheBerechnen() + " m²");
-		String netto = ("Nettopreis: " + nettoPreis() + " €");
+		grundflaeche.setText(flaecheBerechnen() + " m²");
+		nettopreis.setText(nettoPreis() + " €");
 		
 		//Provision und Endpreis werden auf 2 Nachkommastellen gekürzt angezeigt
-		String provision = ("Preis inklusive Provision: \n" + String.format("%.2f",provisionsPreis()) + " €");
-		String endPreis = ("Preis inkl. Provision und Mehrwertsteuer: \n" + String.format("%.2f", bruttoPreis()) + " €");
-	
-		ausgabe.setText(flaeche + "\n" + netto + "\n" + provision + "\n" + endPreis);
+		inklprovision.setText(String.format("%.2f",provisionsPreis()) + " €");
+		endpreis.setText(String.format("%.2f", bruttoPreis());
 	}
-	
-	
+
 	//die Methode zur Berechnung der Fläche
 	public double flaecheBerechnen() {
 		
+		//falls 0 oder ein anderer ungültiger Wert eingeben wird - Fehler abfangen
 		try {
 			double length = Double.parseDouble(lengthIn.getText());
 			double width = Double.parseDouble(widthIn.getText());
 		
+		//auf Ganze Zahl runden
 		return Math.round(length * width);
 		}
 		catch (Exception e) {
@@ -57,7 +57,7 @@ public class FXMLController {
 	//die Methode für den Netto-Grundstückspreis
 	private double nettoPreis() {
 		
-		//falls 0 oder ein anderer ungültiger Wert eingeben wird
+		//falls 0 oder ein anderer ungültiger Wert eingeben wird  - Fehler abfangen
 		double qmPrice = Double.parseDouble(qmPriceIn.getText());
 		
 		try {
@@ -85,12 +85,10 @@ public class FXMLController {
 		return (MWST * provisionsPreis());
 	}
 	
-
 	//die Methode zum Beenden
 	@FXML protected void beendenKlick(ActionEvent event) {
 		Platform.exit();
 	}
-	
 	
 	//die Methode neu -> Clear
 	@FXML protected void reset(ActionEvent event) {
@@ -100,12 +98,16 @@ public class FXMLController {
 		
 		//den Dialog anzeigen
 		meinDialog.showAndWait();
+		
+		//Feldinhalte mit leer überschreiben
 		lengthIn.setText(null);
 		widthIn.setText(null);
 		qmPriceIn.setText(null);
-		ausgabe.setText(null);
+		grundflaeche.setText(null);
+		nettopreis.setText(null);
+		inklprovision.setText(null);
+		endpreis.setText(null);
 	}
-	
 	
 	//Info
 	@FXML protected void infoKlick(ActionEvent event) {
