@@ -27,7 +27,7 @@ public class JavaFX_GrundstueckGUI extends Application {
 		Scene meineScene = new Scene(root, 600, 400);
 		
 		//den Titel über stage setzen
-		meineBuehne.setTitle("Grundstückscalculator");
+		meineBuehne.setTitle("Grundstückscalculator von Martin Tastler");
 		//die Szene setzen
 		meineBuehne.setScene(meineScene);
 		//Fenstergröße fix setzen
