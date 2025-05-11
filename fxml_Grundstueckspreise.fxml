@@ -38,7 +38,6 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -48,14 +47,14 @@
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
-        <Menu mnemonicParsing="false" text="File">
+        <Menu mnemonicParsing="false" text="Datei">
           <items>
-            <MenuItem mnemonicParsing="false" text="Neu" />
+            <MenuItem mnemonicParsing="false" onAction="#reset" text="Neu" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" onAction="#beendenKlick" text="Beenden" />
           </items>
         </Menu>
-        <Menu mnemonicParsing="false" text="Help">
+        <Menu mnemonicParsing="false" text="Hilfe">
           <items>
             <MenuItem mnemonicParsing="false" onAction="#infoKlick" text="Info" />
           </items>
@@ -64,20 +63,39 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="400.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
       <children>
-            <Button layoutX="102.0" layoutY="288.0" mnemonicParsing="false" text="Berechnen" />
-            <Label layoutX="25.0" layoutY="32.0" prefHeight="30.0" prefWidth="243.0" text="Grundstücksabmessungen">
+            <Button layoutX="100.0" layoutY="312.0" mnemonicParsing="false" onAction="#berechnen" text="Berechnen" />
+            <Label layoutX="25.0" layoutY="14.0" prefHeight="30.0" prefWidth="177.0" text="Grundstücksabmessungen">
                <font>
-                  <Font name="System Bold" size="15.0" />
+                  <Font size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="25.0" layoutY="90.0" />
-            <TextField layoutX="25.0" layoutY="139.0" />
-            <Label layoutX="25.0" layoutY="73.0" prefHeight="17.0" prefWidth="177.0" text="Länge:" />
-            <Label layoutX="25.0" layoutY="122.0" prefHeight="17.0" prefWidth="177.0" text="Breite:" />
-            <TextArea layoutX="332.0" layoutY="88.0" prefHeight="141.0" prefWidth="232.0" />
-            <Label layoutX="332.0" layoutY="38.0" prefHeight="17.0" prefWidth="177.0" text="Ergebnisse:" />
-            <TextField layoutX="25.0" layoutY="204.0" />
-            <Label layoutX="25.0" layoutY="187.0" prefHeight="17.0" prefWidth="177.0" text="Quadratmeterpreis:" />
+            <TextField fx:id="lengthIn" alignment="CENTER_RIGHT" layoutX="25.0" layoutY="70.0" />
+            <TextField fx:id="widthIn" alignment="CENTER_RIGHT" layoutX="25.0" layoutY="118.0" />
+            <Label layoutX="25.0" layoutY="53.0" prefHeight="17.0" prefWidth="177.0" text="Länge:" />
+            <Label layoutX="25.0" layoutY="103.0" prefHeight="17.0" prefWidth="177.0" text="Breite:" />
+            <TextField fx:id="qmPriceIn" alignment="CENTER_RIGHT" layoutX="25.0" layoutY="214.0" />
+            <Label layoutX="25.0" layoutY="196.0" prefHeight="17.0" prefWidth="177.0" text="Quadratmeterpreis:" />
+            <Button layoutX="25.0" layoutY="312.0" mnemonicParsing="false" onAction="#reset" text="Reset" />
+            <Label fx:id="endpreis" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="320.0" layoutY="221.0" maxHeight="250.0" maxWidth="250.0" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-color: darkgrey; -fx-border-radius: 3px; -fx-padding: 5;" textAlignment="RIGHT" wrapText="true" />
+            <Label layoutX="25.0" layoutY="250.0" prefHeight="17.0" prefWidth="177.0" text="Provision: 5 %" />
+            <Label layoutX="25.0" layoutY="275.0" prefHeight="17.0" prefWidth="177.0" text="Mehrwertsteuer: 19 %" />
+            <Label layoutX="25.0" layoutY="157.0" prefHeight="30.0" prefWidth="177.0" text="Wertevaulierung">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="320.0" layoutY="14.0" prefHeight="30.0" prefWidth="177.0" text="Ergebnisse">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="grundflaeche" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="320.0" layoutY="68.0" maxHeight="250.0" maxWidth="250.0" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-color: darkgrey; -fx-border-radius: 3px; -fx-padding: 5;" textAlignment="RIGHT" wrapText="true" />
+            <Label layoutX="320.0" layoutY="53.0" prefHeight="17.0" prefWidth="177.0" text="Grundfläche:" />
+            <Label layoutX="320.0" layoutY="103.0" prefHeight="17.0" prefWidth="177.0" text="Nettopreis:" />
+            <Label fx:id="nettopreis" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="320.0" layoutY="120.0" maxHeight="250.0" maxWidth="250.0" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-color: darkgrey; -fx-border-radius: 3px; -fx-padding: 5;" textAlignment="RIGHT" wrapText="true" />
+            <Label fx:id="inklprovision" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="320.0" layoutY="172.0" maxHeight="250.0" maxWidth="250.0" prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-color: darkgrey; -fx-border-radius: 3px; -fx-padding: 5;" textAlignment="RIGHT" wrapText="true" />
+            <Label layoutX="320.0" layoutY="157.0" prefHeight="17.0" prefWidth="177.0" text="Preis inkl. Provision:" />
+            <Label layoutX="320.0" layoutY="204.0" prefHeight="17.0" prefWidth="177.0" text="Endpreis:" />
       </children>
     </AnchorPane>
   </children>
