@@ -12,15 +12,18 @@ import javafx.stage.Stage;
 public class FXMLController {
 	
 	//Deklarationen
-		@FXML private Stage meineStage;
-		@FXML private TextField lengthIn;
-		@FXML private TextField widthIn;
-		@FXML private TextField qmPriceIn;
-		@FXML private Label grundflaeche;
-		@FXML private Label nettopreis;
-		@FXML private Label inklprovision;
-		@FXML private Label endpreis;
+	@FXML private Stage meineStage;
+	@FXML private TextField lengthIn;
+	@FXML private TextField widthIn;
+	@FXML private TextField qmPriceIn;
+	@FXML private Label grundflaeche;
+	@FXML private Label nettopreis;
+	@FXML private Label inklprovision;
+	@FXML private Label endpreis;
+	@FXML private Label provision;
+	@FXML private Label steuer;
 	
+		
 	//die Methode setzt die Bühne auf den übergebenen Wert
 	public void setMeineStage(Stage meineStage) {
 		this.meineStage = meineStage;
@@ -32,12 +35,14 @@ public class FXMLController {
 		//Ausgabe der Berechnungen unter Verwendung der Methoden
 		grundflaeche.setText(flaecheBerechnen() + " m²");
 		
-		//Auf 2 Nachkommastellen gekürzt anzeigen
+		//Die Preise auf 2 Nachkommastellen gekürzt anzeigen
 		nettopreis.setText(String.format("%.2f", nettoPreis()) + " €");
 		inklprovision.setText(String.format("%.2f", provisionsPreis()) + " €");
 		endpreis.setText(String.format("%.2f", bruttoPreis()) + " €");
+		provision.setText(String.format("%.2f", provisionsPreis()-nettoPreis()) + " €");
+		steuer.setText(String.format("%.2f", bruttoPreis()-nettoPreis()) + " €");
 	}
-
+	
 	//die Methode zur Berechnung der Fläche
 	public double flaecheBerechnen() {
 		
@@ -46,10 +51,10 @@ public class FXMLController {
 			double length = Double.parseDouble(lengthIn.getText());
 			double width = Double.parseDouble(widthIn.getText());
 		
-		//auf Ganze Zahl runden
-		return Math.round(length * width);
-		}
-		catch (Exception e) {
+			//auf Ganze Zahl runden
+			return length * width;
+		
+		} catch (Exception e) {
 			return 0;
 		}
 	}
@@ -62,8 +67,8 @@ public class FXMLController {
 		
 		try {
 			return flaecheBerechnen() * qmPrice;
-		}
-		catch (Exception e) {
+		
+		} catch (Exception e) {
 			return 0;
 		}
 	}
@@ -77,7 +82,7 @@ public class FXMLController {
 		return PROVISION * nettoPreis();
 	}
 	
-	//die Methode
+	//die Methode für der finalen Bruttopreis
 	private double bruttoPreis() {
 		//Mehrwertsteuer 19%
 		final double MWST = 1.19;
@@ -92,6 +97,8 @@ public class FXMLController {
 	
 	//die Methode neu -> Clear
 	@FXML protected void reset(ActionEvent event) {
+		
+		//Hinweisefenster über das Löschen der Daten erzeugen
 		Alert meinDialog = new Alert(AlertType.INFORMATION, "Die Daten werden gelöscht.");
 		//den Text setzen
 		meinDialog.setHeaderText("Bitte beachten");
@@ -112,7 +119,8 @@ public class FXMLController {
 	//Info
 	@FXML protected void infoKlick(ActionEvent event) {
 		Alert info = new Alert(AlertType.INFORMATION, "Von Martin Tastler");
-		info.setHeaderText("Grundstückscalculator Version 1.0");
+		info.setHeaderText("Grundstückscalculator Version 2.0");
 		info.show();
 	}
 }
+
